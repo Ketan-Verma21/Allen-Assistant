@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:allen/secrets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 class OpenAIService{
   final List<Map<String,String>> messages=[];
@@ -9,7 +9,7 @@ class OpenAIService{
         final res=await http.post(Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           "Content-Type": "application/json",
-          "Authorization":"Bearer $openAiApiKey"
+          "Authorization":"Bearer ${dotenv.env['openAiApiKey']}"
         },
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
@@ -49,7 +49,7 @@ class OpenAIService{
       final res=await http.post(Uri.parse('https://api.openai.com/v1/chat/completions'),
           headers: {
             "Content-Type": "application/json",
-            "Authorization":"Bearer $openAiApiKey"
+            "Authorization":"Bearer ${dotenv.env['openAiApiKey']}"
           },
           body: jsonEncode({
             "model": "gpt-3.5-turbo",

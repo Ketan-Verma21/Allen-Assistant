@@ -1,1 +1,0 @@
-const openAiApiKey="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";
